@@ -15,6 +15,7 @@
     "react-native-image-picker": "^5.3.1",
     "react-native-modal": "^13.0.1",
     "react-native-svg": "^13.9.0",
+    "react-native-swiper-flatlist": "^3.1.2",
     "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {

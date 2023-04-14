@@ -4,10 +4,11 @@ import Header from './component/header'
 import ButtonComponent from './component/button'
 import HomeScreen from './scr/home/homeScreen'
 import PredictScreen from './scr/home/predictScreen'
+import OnboardingScreen from './scr/loading'
 
 const App = () => {
   return (
-   <PredictScreen/>
+   <OnboardingScreen/>
   )
 }
 
