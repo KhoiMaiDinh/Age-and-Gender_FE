@@ -1,17 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Header from './component/header'
-import ButtonComponent from './component/button'
-import HomeScreen from './scr/home/homeScreen'
-import PredictScreen from './scr/home/predictScreen'
-import OnboardingScreen from './scr/loading'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import Header from './component/header';
+import ButtonComponent from './component/button';
+import HomeScreen from './scr/home/homeScreen';
+import PredictScreen from './scr/home/predictScreen';
+import OnboardingScreen from './scr/loading';
 
 const App = () => {
-  return (
-   <OnboardingScreen/>
-  )
-}
+  return <HomeScreen />;
+};
 
-export default App
+export default App;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
