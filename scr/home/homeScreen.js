@@ -19,6 +19,8 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Popup from '../../component/popup';
 import Modal from 'react-native-modal';
 import axios from 'axios';
+import Loading from '../../component/loading';
+import ErrorModal from '../../component/error';
 
 const HomeScreen = () => {
   const [color] = useState(new Animated.Value(0));
@@ -41,6 +43,7 @@ const HomeScreen = () => {
   });
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [age, setAge] = useState([]);
   const [gender, setGender] = useState('');
   const defaultImg =
@@ -57,6 +60,8 @@ const HomeScreen = () => {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       const result = await launchCamera(options);
       setCameraPhoto(result.assets[0].uri);
+      setAge([]);
+      setGender('');
       setVisible(false);
     }
   };
@@ -64,6 +69,8 @@ const HomeScreen = () => {
   const openGallery = async () => {
     const result = await launchImageLibrary(options);
     setCameraPhoto(result.assets[0].uri);
+    setAge([]);
+    setGender('');
     setVisible(false);
   };
 
@@ -94,13 +101,15 @@ const HomeScreen = () => {
       setLoading(false);
     } catch (err) {
       console.log('err', err);
+      setError(true);
       setLoading(false);
     }
   };
   return (
     <SafeAreaView style={styles.container}>
       <Header></Header>
-
+      {loading && <Loading />}
+      {error && <ErrorModal setError={setError} />}
       <View style={styles.viewImage}>
         <Image
           source={{uri: cameraPhoto}}
@@ -135,7 +144,9 @@ const HomeScreen = () => {
           </View>
           <View style={styles.viewPredict}>
             <View style={styles.viewItemLeft}>
-              <Text style={styles.textPredict}>{age[0] ? age[0] : '?'}</Text>
+              <Text adjustsFontSizeToFit style={styles.textPredict}>
+                {age[0] ? age[0] : '?'}
+              </Text>
             </View>
             <View style={styles.viewItemRight}>
               <Text style={styles.textPredict}>{age[1] ? age[1] : '?'}</Text>
@@ -257,6 +268,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
     borderWidth: 1,
     width: '40%',
+    height: scale(25),
     alignItems: 'center',
     borderColor: color.White,
   },
@@ -265,6 +277,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     borderWidth: 1,
     width: '40%',
+    height: scale(25),
     alignItems: 'center',
     borderColor: color.White,
   },
