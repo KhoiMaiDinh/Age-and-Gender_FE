@@ -1,4 +1,4 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View, TouchableOpacity, PermissionsAndroid } from 'react-native'
 import React,{useState} from 'react'
 import Header from '../../component/header'
 import { IMG_Logo, IMG_Predict } from '../../assets/images'
